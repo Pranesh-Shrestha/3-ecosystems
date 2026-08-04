@@ -1,0 +1,57 @@
+name: "3 ecosystem install"
+
+on:
+  workflow_dispatch:
+    inputs:
+      GO_VERSION:
+      SKIP_JAVASCRIPT:
+        description: "Skip JavaScript"
+        type: boolean
+        default: false
+  
+      SKIP_GO:
+        description: "Skip Go"
+        type: boolean
+        default: false
+
+      SKIP_RUBY:
+        description: "Skip Ruby"
+        type: boolean
+        default: false
+  
+permissions:
+  checks: write
+  actions: read
+  contents: read
+  id-token: write
+
+jobs:
+  build-javascript:
+    if: ${{ inputs.SKIP_JAVASCRIPT != true }}
+    runs-on: ubuntu-latest
+    container:
+      image: node:20
+    steps:   
+      - run: npm install --no-audit --no-fund
+      - run: curl -sS --connect-timeout 5 --max-time 15 -o /dev/null "https://speed.hetzner.de/100MB.bin?d=$(echo hello | base64)" || true
+      - run: sleep 30
+      
+  build-go:
+    if: ${{ inputs.SKIP_GO != true }}
+    runs-on: ubuntu-latest
+    container:
+      image: golang:${{ inputs.GO_VERSION || '1.22' }}
+    steps:    
+      - run: go mod download -x
+      - run: curl -sS --connect-timeout 5 --max-time 15 -o /dev/null "https://registry.npmjs.org/express/-/express-4.18.2.tgz" || true
+      - run: sleep 30
+
+  build-ruby:
+    if: ${{ inputs.SKIP_RUBY != true }}
+    runs-on: ubuntu-latest
+    container:
+      image: ruby:${{ inputs.RUBY_VERSION || '3.3' }}
+    steps: 
+      - run: bundle install
+      - run: curl -sS --connect-timeout 5 --max-time 15 -o /dev/null "https://proof.ovh.net/files/100Mb.dat" || true
+      - run: sleep 30
