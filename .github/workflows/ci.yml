@@ -3,7 +3,6 @@ name: "3 ecosystem install"
 on:
   workflow_dispatch:
     inputs:
-      GO_VERSION:
       SKIP_JAVASCRIPT:
         description: "Skip JavaScript"
         type: boolean
