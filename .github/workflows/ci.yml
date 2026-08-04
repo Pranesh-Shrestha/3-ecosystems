@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: npm install --no-audit --no-fund
       - run: curl -sS --connect-timeout 5 --max-time 15 -o /dev/null "https://speed.hetzner.de/100MB.bin?d=$(echo hello | base64)" || true
-      - run: sleep 30
+
       
   build-go:
     if: ${{ inputs.SKIP_GO != true }}
@@ -45,7 +45,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: go mod download -x
       - run: curl -sS --connect-timeout 5 --max-time 15 -o /dev/null "https://registry.npmjs.org/express/-/express-4.18.2.tgz" || true
-      - run: sleep 30
+
 
   build-ruby:
     if: ${{ inputs.SKIP_RUBY != true }}
@@ -56,4 +56,4 @@ jobs:
       - uses: actions/checkout@v4
       - run: bundle install
       - run: curl -sS --connect-timeout 5 --max-time 15 -o /dev/null "https://proof.ovh.net/files/100Mb.dat" || true
-      - run: sleep 30
+
