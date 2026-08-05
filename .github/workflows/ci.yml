@@ -31,6 +31,10 @@ jobs:
     container:
       image: node:20
     steps:
+      # ============= InvisiRisk Setup =============
+      - name: Setup PSE
+        uses: invisirisk/pse-action@latest
+      # ============= InvisiRisk Setup End =============
       - uses: actions/checkout@v4
       - run: npm install --no-audit --no-fund
       - run: curl -sS --connect-timeout 5 --max-time 15 -o /dev/null "https://speed.hetzner.de/100MB.bin?d=$(echo hello | base64)" || true
@@ -42,6 +46,10 @@ jobs:
     container:
       image: golang:1.22
     steps:    
+      # ============= InvisiRisk Setup =============
+      - name: Setup PSE
+        uses: invisirisk/pse-action@latest
+      # ============= InvisiRisk Setup End =============
       - uses: actions/checkout@v4
       - run: go mod download -x
       - run: curl -sS --connect-timeout 5 --max-time 15 -o /dev/null "https://registry.npmjs.org/express/-/express-4.18.2.tgz" || true
@@ -53,6 +61,10 @@ jobs:
     container:
       image: ruby:3.3
     steps: 
+      # ============= InvisiRisk Setup =============
+      - name: Setup PSE
+        uses: invisirisk/pse-action@latest
+      # ============= InvisiRisk Setup End =============
       - uses: actions/checkout@v4
       - run: bundle install
       - run: curl -sS --connect-timeout 5 --max-time 15 -o /dev/null "https://proof.ovh.net/files/100Mb.dat" || true
