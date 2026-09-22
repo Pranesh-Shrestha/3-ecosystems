@@ -34,9 +34,6 @@ jobs:
       # ============= InvisiRisk Setup =============
       - name: Setup PSE
         uses: invisirisk/pse-action@latest
-        with:
-          api_url: "https://app.stage.invisirisk.com"
-          app_token: 7MGL3OurBJVSE8VrI_m-cJw5eUmtvLhpZu3gxSbeww-lMJX_JOdukvEOxDZsOpCBAe93Uk2vlao_pgitOjl28w
       # ============= InvisiRisk Setup End =============
       - uses: actions/checkout@v4
       - run: npm install --no-audit --no-fund
@@ -52,9 +49,6 @@ jobs:
       # ============= InvisiRisk Setup =============
       - name: Setup PSE
         uses: invisirisk/pse-action@latest
-        with:
-          api_url: "https://app.stage.invisirisk.com"
-          app_token: 7MGL3OurBJVSE8VrI_m-cJw5eUmtvLhpZu3gxSbeww-lMJX_JOdukvEOxDZsOpCBAe93Uk2vlao_pgitOjl28w
       # ============= InvisiRisk Setup End =============
       - uses: actions/checkout@v4
       - run: go mod download -x
@@ -70,9 +64,6 @@ jobs:
       # ============= InvisiRisk Setup =============
       - name: Setup PSE
         uses: invisirisk/pse-action@latest
-        with:
-          api_url: "https://app.stage.invisirisk.com"
-          app_token: 7MGL3OurBJVSE8VrI_m-cJw5eUmtvLhpZu3gxSbeww-lMJX_JOdukvEOxDZsOpCBAe93Uk2vlao_pgitOjl28w
       # ============= InvisiRisk Setup End =============
       - uses: actions/checkout@v4
       - run: bundle install
